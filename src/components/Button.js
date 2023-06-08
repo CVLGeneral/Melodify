@@ -8,6 +8,7 @@ const Button = ({ text, target, className }) => {
   );
 };
 
+
 const Btn = styled.a`
   padding: 0.5rem 1.2rem;
   background-color: #ed215e;
