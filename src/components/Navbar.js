@@ -37,6 +37,7 @@ html.addEventListener("click", (e) => setIsNavOpen(false));
         <Link to="/" className="tag">
           Home
         </Link>
+        
 
 
         <a className="tag" href="artists">
