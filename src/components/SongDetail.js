@@ -30,7 +30,8 @@ const SongDetail = () => {
       );
       setSongsDetail(SongDetailData);
       console.log(SongDetailData)
-
+      
+      
 
 
       const sameGenreSongsData = await FetchData(
