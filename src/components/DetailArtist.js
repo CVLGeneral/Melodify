@@ -5,6 +5,7 @@ import { FetchData, SongOptions } from "../utlis/FetchData";
 import DetailArtist from "../components/DetailArtist";
 import Loader from "../components/Loader";
 
+
 const ArtistDetail = () => {
   const [artistDetail, setArtistsDetail] = useState({});
   const { id } = useParams();
