@@ -15,6 +15,7 @@ import ArtistDetail from "./components/ArtistDetail";
 
 
 
+
 import { Routes,Route } from "react-router-dom";
 
 import Loader from "./components/Loader";
