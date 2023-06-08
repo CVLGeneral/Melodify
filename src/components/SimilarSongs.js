@@ -82,6 +82,7 @@ const Button = styled.button`
   }
 `;
 
+
 const ChildCard = styled.div`
   /* Add your desired styles for the child cards */
   /* For example: */
