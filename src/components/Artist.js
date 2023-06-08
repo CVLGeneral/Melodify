@@ -14,6 +14,7 @@ const Artist = ({ item, img, name,id}) => {
       to={`/artist/${id}`}
       >
    
+   
 
       <Card
         type="button"
