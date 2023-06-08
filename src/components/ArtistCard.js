@@ -5,6 +5,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Artist from "./Artist";
 
 
+
 const ArtistCard = () => {
   const [artists, setArtists] = useState([]);
   console.log(artists)
