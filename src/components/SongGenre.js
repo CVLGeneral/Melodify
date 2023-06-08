@@ -9,6 +9,7 @@ const SongGenre = ({ item, img, setSongGenre, songGenre }) => {
       type="button"
       style={
         songGenre === item
+        
           ? {
               borderTop: "5px solid #000",
               borderBottom: "5px solid #000",
