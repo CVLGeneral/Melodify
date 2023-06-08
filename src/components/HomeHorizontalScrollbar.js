@@ -96,6 +96,7 @@ const HomeHorizontalScrollbar = ({ data,songGenre,setSongGenre }) => {
     const RightHandler = () => {
       ref.current.scrollLeft += 200;
     };
+    
   
     return (
       <Div>
