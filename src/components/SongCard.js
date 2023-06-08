@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const SongCard = ({ song, index }) => {
+const SongCard = ({ song, index, updateSong }) => {
   const [deleted, setDeleted] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [songName, setSongName] = useState(song.title);
+  const [imageUrl, setImageUrl] = useState(song.image_path);
 
   let str;
   const length = song.title.length;
@@ -15,8 +17,6 @@ const SongCard = ({ song, index }) => {
   } else {
     str = song.title;
   }
-
-  console.log(song.artist);
 
   const handleDelete = event => {
     event.preventDefault(); // Prevent page reload
@@ -31,7 +31,51 @@ const SongCard = ({ song, index }) => {
       })
       .catch(error => console.error(error));
   };
-  
+
+  const openForm = () => {
+    setShowForm(true);
+  };
+
+  const closeForm = () => {
+    setShowForm(false);
+  };
+
+  const handleSongNameChange = event => {
+    setSongName(event.target.value);
+  };
+
+  const handleImageUrlChange = event => {
+    setImageUrl(event.target.value);
+  };
+
+  const handleUpdate = event => {
+    event.preventDefault(); // Prevent page reload
+
+    const updatedSong = {
+      id: song.id,
+      title: songName,
+      image_path: imageUrl,
+    };
+
+    fetch(`http://localhost:9292/songs/${song.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedSong),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); // Optional: handle the response data
+
+        // Update the song object in the parent component's state
+        updateSong(data);
+      })
+      .catch(error => console.error(error));
+
+    // Close the form after saving changes
+    closeForm();
+  };
 
   if (deleted) {
     return null; // Optional: hide the deleted song item from the UI
@@ -39,11 +83,7 @@ const SongCard = ({ song, index }) => {
 
   return (
     <>
-      <Link
-        style={{ textDecoration: "none" }}
-        className="song_card"
-        to={`/song/${song.id}`}
-      >
+      <div className="song_card">
         <SongCardDiv>
           <div className="image">
             <img src={song.image_path} alt={song.title} loading="lazy" />
@@ -51,19 +91,106 @@ const SongCard = ({ song, index }) => {
           <h3>{str}</h3>
 
           <div className="content">
-            <button onClick={handleDelete}>Delete</button>
+          <button onClick={openForm} className="button-link">
+              Update
+            </button>
+            <button onClick={handleDelete} className="button-link">
+              Delete
+            </button>
+
           </div>
         </SongCardDiv>
-      </Link>
+      </div>
+
+      {showForm && (
+        <FormOverlay>
+          <FormContent>
+            <form onSubmit={handleUpdate}>
+              <label htmlFor="songName">Song Name:</label>
+              <input
+                type="text"
+                id="songName"
+                value={songName}
+                onChange={handleSongNameChange}
+              />
+
+              <label htmlFor="imageUrl">Image URL:</label>
+              <input
+                type="text"
+                id="imageUrl"
+                value={imageUrl}
+                onChange={handleImageUrlChange}
+              />
+
+              <button type="submit">Save</button>
+              <button type="button" onClick={closeForm}>
+                Cancel
+              </button>
+            </form>
+          </FormContent>
+        </FormOverlay>
+      )}
     </>
   );
 };
 
 
+
+
+const FormOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FormContent = styled.div`
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  /* Add other styles as needed */
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #ed215e;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e51b57;
+      }
+    }
+  }
+`;
+
+
 const SongCardDiv = styled.div`
   padding: 2rem 1.2rem;
   width: 201.75px;
-  height: 292.14px;
+  height: 302.14px;
   display: flex;
   flex-direction: column;
   
@@ -87,6 +214,21 @@ const SongCardDiv = styled.div`
     justify-content: space-around;
     gap: 1.5rem;
     font-size: 1rem;
+    a.button-link,button {
+      /* Styles for the button-like appearance */
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #ed215e;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e51b57;
+      }
+    }
     .btn {
       padding: 1rem 2rem;
       border: none;

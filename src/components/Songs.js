@@ -3,24 +3,14 @@ import Pagination from "@mui/material/Pagination";
 import { FetchData, SongOptions } from "../utlis/FetchData";
 import styled from "styled-components";
 import SongCard from "../components/SongCard";
-const Songs = ({ songs, songGenre, setSongs }) => {
-   console.log(songs);
-// Set initial state for current page
-  const [currentPage, setCurrentPage] = useState(1);
-  // Set number of songs per page
-  const SongPerPage = 15;
-  // Calculate the index of the last song on the current page
-  const indexOfLastSong = currentPage * SongPerPage;
-  // Calculate the index of the first song on the current page
-  const indexOfFirstSong = indexOfLastSong - SongPerPage;
-  // Slice the songs array to only include songs for the current page
-  const currentSongs = songs.slice(
-    indexOfFirstSong,
-    indexOfLastSong
-  );
-  
 
-// Fetch song data from API when the song genre changes
+const Songs = ({ songs, songGenre, setSongs }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const SongPerPage = 15;
+  const indexOfLastSong = currentPage * SongPerPage;
+  const indexOfFirstSong = indexOfLastSong - SongPerPage;
+  const currentSongs = songs.slice(indexOfFirstSong, indexOfLastSong);
+
   useEffect(() => {
     const fetchSongData = async () => {
       let SongData = [];
@@ -38,8 +28,24 @@ const Songs = ({ songs, songGenre, setSongs }) => {
       setSongs(SongData);
     };
     fetchSongData();
-  }, [songGenre,setSongs]);
-// Function to handle pagination and scrolling to top of page
+  }, [songGenre, setSongs]);
+
+  const updateSong = (updatedSong) => {
+    // Update the song in the songs array
+    const updatedSongs = songs.map((song) => {
+      if (song.id === updatedSong.id) {
+        return {
+          ...song,
+          title: updatedSong.title,
+          image_path: updatedSong.image_path,
+        };
+      }
+      return song;
+    });
+
+    setSongs(updatedSongs);
+  };
+
   const paginate = (e, value) => {
     setCurrentPage(value);
     window.scrollTo({ top: 1700, behavior: "smooth" });
@@ -50,9 +56,15 @@ const Songs = ({ songs, songGenre, setSongs }) => {
       <h2>Showing Song Results</h2>
       <div className="card">
         {currentSongs.map((song, index) => (
-          <SongCard key={index} song={song} flg={false} />
+          <SongCard
+            key={index}
+            song={song}
+            updateSong={updateSong} // Pass the updateSong function as prop
+            flg={false}
+          />
         ))}
       </div>
+
 
       <PaginationDiv>
         {songs.length > SongPerPage && (
