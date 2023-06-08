@@ -18,6 +18,7 @@ const Songs = ({ songs, songGenre, setSongs }) => {
     indexOfFirstSong,
     indexOfLastSong
   );
+  
 
 // Fetch song data from API when the song genre changes
   useEffect(() => {
