@@ -27,6 +27,7 @@ function NewSong({ artistId, onAddSong }) {
       image_path: image_path,
       artist_id: selectedArtistId
     };
+    
 
     fetch('http://localhost:9292/songs', {
       method: 'POST',
