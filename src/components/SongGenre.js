@@ -4,12 +4,13 @@ import styled from "styled-components";
 //item,img,setBodyPart and BodyPart are pass as props from HomeHorizontalScrollbar component
 
 const SongGenre = ({ item, img, setSongGenre, songGenre }) => {
+  
   return (
     <Card
       type="button"
       style={
         songGenre === item
-        
+
           ? {
               borderTop: "5px solid #000",
               borderBottom: "5px solid #000",
