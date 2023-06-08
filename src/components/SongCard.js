@@ -31,6 +31,7 @@ const SongCard = ({ song, index }) => {
       })
       .catch(error => console.error(error));
   };
+  
 
   if (deleted) {
     return null; // Optional: hide the deleted song item from the UI
