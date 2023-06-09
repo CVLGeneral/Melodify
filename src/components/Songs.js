@@ -10,7 +10,7 @@ const Songs = ({ songs, songGenre, setSongs }) => {
   const indexOfLastSong = currentPage * SongPerPage;
   const indexOfFirstSong = indexOfLastSong - SongPerPage;
   const currentSongs = songs.slice(indexOfFirstSong, indexOfLastSong);
-
+//Fetches song on the api
   useEffect(() => {
     const fetchSongData = async () => {
       let SongData = [];

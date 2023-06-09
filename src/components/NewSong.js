@@ -11,14 +11,17 @@ function NewSong({ artistId, onAddSong }) {
   const [selectedArtistId, setSelectedArtistId] = useState('');
 
   useEffect(() => {
+    // Fetch artists data from the server
     fetch('http://localhost:9292/artists')
       .then(response => response.json())
       .then(data => setArtists(data))
       .catch(error => console.error(error));
   }, []);
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    // Create a new song object with the form data
     const newSong = {
       title: title,
       genre: genre,
@@ -28,7 +31,7 @@ function NewSong({ artistId, onAddSong }) {
       artist_id: selectedArtistId
     };
     
-
+    // Send a POST request to create a new song
     fetch('http://localhost:9292/songs', {
       method: 'POST',
       headers: {
@@ -39,7 +42,8 @@ function NewSong({ artistId, onAddSong }) {
       .then(response => response.json())
       .then(data => onAddSong(data))
       .catch(error => console.error(error));
-
+  
+    // Reset the form fields
     setTitle('');
     setGenre('');
     setDescription('');
@@ -47,6 +51,7 @@ function NewSong({ artistId, onAddSong }) {
     setImagePath('');
     setSelectedArtistId('');
   };
+  
 
   return (
     <FormContainer onSubmit={handleSubmit}>

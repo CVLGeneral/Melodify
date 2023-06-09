@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+// ArtistDetail component
 const ArtistDetail = () => {
   const [artist, setArtist] = useState(null);
   const [songs, setSongs] = useState([]);
@@ -9,6 +10,7 @@ const ArtistDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    // Fetch artist data based on the provided ID
     fetch(`http://localhost:9292/artists/${id}`)
       .then(response => response.json())
       .then(data => setArtist(data))
@@ -16,6 +18,7 @@ const ArtistDetail = () => {
   }, [id]);
 
   useEffect(() => {
+    // Fetch songs data for the artist
     if (artist) {
       fetch(`http://localhost:9292/artists/${id}/songs`)
         .then(response => response.json())
@@ -27,7 +30,6 @@ const ArtistDetail = () => {
   if (!artist) {
     return <Loading>Loading...</Loading>;
   }
-
   return (
     <Container>
       <ArtistName>{artist.name}</ArtistName>

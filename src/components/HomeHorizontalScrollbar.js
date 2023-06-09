@@ -79,23 +79,29 @@ const HomeHorizontalScrollbar = ({ data,songGenre,setSongGenre }) => {
       },
     ];
   
-    if (data.length >= 13) {
-        for (let i = 0; i < 13; i++) {
-          if (SongGenreImage[i]) { // Check if the object exists
-            SongGenreImage[i].text = data[i];
-          }
-        }
+    // Update the text property of each genre object based on the provided data
+  if (data.length >= 13) {
+    for (let i = 0; i < 13; i++) {
+      if (SongGenreImage[i]) {
+        // Check if the object exists
+        SongGenreImage[i].text = data[i];
       }
-  
-    const ref = useRef(null);
-  
-    const LeftHandler = () => {
-      ref.current.scrollLeft -= 200;
-    };
-  
-    const RightHandler = () => {
-      ref.current.scrollLeft += 200;
-    };
+    }
+  }
+
+  const ref = useRef(null);
+
+  const LeftHandler = () => {
+    // Scroll the scrollbar to the left by 200px
+    ref.current.scrollLeft -= 200;
+  };
+
+  const RightHandler = () => {
+    // Scroll the scrollbar to the right by 200px
+    ref.current.scrollLeft += 200;
+  };
+
+  // Render the component JSX
     
   
     return (

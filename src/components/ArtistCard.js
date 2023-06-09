@@ -4,13 +4,12 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Artist from "./Artist";
 
-
-
+// ArtistCard component
 const ArtistCard = () => {
   const [artists, setArtists] = useState([]);
-  console.log(artists)
 
   useEffect(() => {
+    // Fetch artists data from the API
     fetch(`http://localhost:9292/artists`)
       .then((response) => response.json())
       .then((data) => setArtists(data))
@@ -20,12 +19,15 @@ const ArtistCard = () => {
   const ref = useRef(null);
 
   const LeftHandler = () => {
+    // Scroll the menu to the left
     ref.current.scrollLeft -= 200;
   };
 
   const RightHandler = () => {
+    // Scroll the menu to the right
     ref.current.scrollLeft += 200;
   };
+
 
   return (
     <>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {Link}from "react-router-dom"
 
 const SongCard = ({ song, index, updateSong }) => {
   const [deleted, setDeleted] = useState(false);
@@ -85,10 +86,13 @@ const SongCard = ({ song, index, updateSong }) => {
     <>
       <div className="song_card">
         <SongCardDiv>
-          <div className="image">
-            <img src={song.image_path} alt={song.title} loading="lazy" />
-          </div>
-          <h3>{str}</h3>
+        <Link to={`/song/${song.id}`}>
+            <div className="image">
+              <img src={song.image_path} alt={song.title} loading="lazy" />
+            </div>
+            <h3>{str}</h3>
+
+          </Link>
 
           <div className="content">
           <button onClick={openForm} className="button-link">
@@ -193,15 +197,17 @@ const SongCardDiv = styled.div`
   height: 302.14px;
   display: flex;
   flex-direction: column;
-  
   gap: 0.1rem;
   border-radius: 9px;
   box-shadow: rgba(0, 0, 0, 128) 0px 3px 6px, rgba(0, 0, 0, 128) 0px 3px 6px;
   box-sizing: border-box;
+  cursor: pointer;
+
   &:hover {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 20px 1px,
       rgba(14, 30, 37, 0.2) 0px 2px 16px 1px;
   }
+
   .image {
     width: 80%;
     margin: auto auto;
@@ -209,12 +215,14 @@ const SongCardDiv = styled.div`
       width: 100%;
     }
   }
+
   .content {
     display: flex;
     justify-content: space-around;
     gap: 1.5rem;
     font-size: 1rem;
-    a.button-link,button {
+    a.button-link,
+    button {
       /* Styles for the button-like appearance */
       display: inline-block;
       padding: 0.5rem 1rem;
@@ -229,6 +237,7 @@ const SongCardDiv = styled.div`
         background-color: #e51b57;
       }
     }
+
     .btn {
       padding: 1rem 2rem;
       border: none;
@@ -240,6 +249,7 @@ const SongCardDiv = styled.div`
       color: #fff;
       font-size: 100%;
       font-weight: 500;
+
       &:hover {
         color: #ed215e;
         background-color: #fafafa;
@@ -251,19 +261,26 @@ const SongCardDiv = styled.div`
       background-color: #fafafa;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
         rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
       &:hover {
         background-color: #ed215e;
         color: #fff;
       }
     }
   }
+
   h3 {
     font-size: 1.3rem;
     text-align: center;
     color: #000;
     font-weight: 600;
     text-transform: capitalize;
+
+    &:hover {
+      color: #e51b57;
+    }
   }
+
   @media screen and (min-width: 520px) and (max-width: 768px) {
     padding: 2rem;
     width: 40vw;
@@ -273,10 +290,13 @@ const SongCardDiv = styled.div`
     border-radius: 9px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     box-sizing: border-box;
+    cursor: pointer;
+
     &:hover {
       box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 20px 1px,
         rgba(14, 30, 37, 0.2) 0px 2px 16px 1px;
     }
+
     .image {
       width: 90%;
       margin: auto auto;
@@ -284,6 +304,7 @@ const SongCardDiv = styled.div`
         width: 100%;
       }
     }
+
     .content {
       font-size: 0.9rem;
       .btn {
@@ -292,14 +313,17 @@ const SongCardDiv = styled.div`
         border-radius: 9px;
       }
     }
+
     h3 {
       word-break: word-break;
     }
   }
+
   @media screen and (min-width: 320px) and (max-width: 520px) {
     width: 100%;
     height: max-content;
     align-self: center;
+
     .content {
       font-size: 0.9rem;
       .btn {
@@ -310,5 +334,6 @@ const SongCardDiv = styled.div`
     }
   }
 `;
+
 // const
 export default SongCard;

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from "react-router-dom";
-//nitadelete
 
+// ArtistSong component
 const ArtistSong = () => {
   const [artist, setArtist] = useState(null);
   const [songs, setSongs] = useState([]);
   const { id } = useParams();
 
-
   useEffect(() => {
+    // Fetch artist data based on the provided ID
     fetch(`http://localhost:9292/artists/${id}`)
       .then(response => response.json())
       .then(data => setArtist(data))
@@ -17,6 +17,7 @@ const ArtistSong = () => {
   }, [id]);
 
   useEffect(() => {
+    // Fetch songs data for the artist
     if (artist) {
       fetch(`http://localhost:9292/artists/${id}/songs`)
         .then(response => response.json())
@@ -31,14 +32,20 @@ const ArtistSong = () => {
 
   return (
     <Container>
+      {/* Display artist name */}
       <ArtistName>{artist.name}</ArtistName>
+      {/* Display artist bio */}
       <Bio>{artist.bio}</Bio>
+      {/* Display section title for songs */}
       <SectionTitle>Songs</SectionTitle>
       {songs.length === 0 ? (
+        // If no songs available, display a message
         <NoSongs>No songs available</NoSongs>
       ) : (
+        // If songs available, display the song list
         <SongList>
           {songs.map(song => (
+            // Display each song item
             <SongItem key={song.id}>{song.title}</SongItem>
           ))}
         </SongList>

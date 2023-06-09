@@ -6,57 +6,65 @@ import { FetchData, SongOptions } from "../utlis/FetchData";
 
 
 const SearchSongs = ({
-    search,
-    setSearch,
-    setSongs,
-    songGenre,
-    setSongGenre,
-  }) => {
-    const [songGenres, setSongGenres] = useState([]);
-  
-    useEffect(() => {
-      const fetchSongData = async () => {
-        const songGenreData = await FetchData(
-          "http://localhost:9292/genres",
-          SongOptions
-        );
-        setSongGenres(["all", ...songGenreData]);
-      };
-  
-      fetchSongData();
-    }, []);
-  
-    console.log(songGenres);
-    const searchHandler = (e) => {
-      setSearch(e.target.value.toLowerCase());
+  search,
+  setSearch,
+  setSongs,
+  songGenre,
+  setSongGenre,
+}) => {
+  const [songGenres, setSongGenres] = useState([]);
+
+  useEffect(() => {
+    // Fetch song genre data from the server
+    const fetchSongData = async () => {
+      const songGenreData = await FetchData(
+        "http://localhost:9292/genres",
+        SongOptions
+      );
+      setSongGenres(["all", ...songGenreData]);
     };
-  
-    const submitHandler = async () => {
-      // console.log(search);
-  
-      if (search) {
-        const songsData = await FetchData(
-          "http://localhost:9292/songs",
-          SongOptions
-        );
-        //   console.log(songsData);
-  //handle the searched song
-        const searchSongs = songsData.filter(
-          (song) =>
-            song.title.toLowerCase().includes(search) ||
-            // song.artist.toLowerCase().includes(search) ||
-            song.genre.toLowerCase().includes(search)
-        );
-        //   console.log(searchSongs);
-        setSearch("");
-        setSongs(searchSongs);
-        window.scrollTo({
-          top: 1700,
-          left: 100,
-          behavior: "smooth",
-        });
-      }
-    };
+
+    fetchSongData();
+  }, []);
+
+  console.log(songGenres);
+
+  const searchHandler = (e) => {
+    // Update the search state with the user's input
+    setSearch(e.target.value.toLowerCase());
+  };
+
+  const submitHandler = async () => {
+    // Perform search functionality when the search button is clicked
+
+    if (search) {
+      const songsData = await FetchData(
+        "http://localhost:9292/songs",
+        SongOptions
+      );
+
+      // Filter the songs based on the search query
+      const searchSongs = songsData.filter(
+        (song) =>
+          song.title.toLowerCase().includes(search) ||
+          // song.artist.toLowerCase().includes(search) ||
+          song.genre.toLowerCase().includes(search)
+      );
+
+      // Reset the search input and update the songs state with the search results
+      setSearch("");
+      setSongs(searchSongs);
+
+      // Scroll to a specific position on the page
+      window.scrollTo({
+        top: 1700,
+        left: 100,
+        behavior: "smooth",
+      });
+    }
+  };
+
+
     return (
       <Section id="search">
         <div className="container">
