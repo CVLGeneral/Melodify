@@ -82,11 +82,9 @@ This file defines the `NewSong` component. It allows the user to add a new song 
 <h2>Styling</h2>
 <p>The Melodify App uses Chakra UI, Styled Components and Material-UI for styling.</p>
 <h2>Author</h2>
-This Melodify App application was created by: 
-<ol>
-Kiprotich Ngetich Leonard 
+This Melodify App application was created by: Kiprotich Ngetich Leonard 
 
-</ol> You can contact us at cvlgeneral2020@gmail.com.
+You can contact us at cvlgeneral2020@gmail.com.
 
 <h2>Contributing</h2>
     <p>If you would like to contribute to the project, please follow these steps:</p>
