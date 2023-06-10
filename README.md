@@ -84,7 +84,7 @@ This file defines the `NewSong` component. It allows the user to add a new song 
 <h2>Author</h2>
 This Melodify App application was created by: 
 <ol>
-Kiprotich Ngetich Leonard
+Kiprotich Ngetich Leonard 
 
 </ol> You can contact us at cvlgeneral2020@gmail.com.
 
