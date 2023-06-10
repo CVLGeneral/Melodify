@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+<!DOCTYPE html>
+<html lang="en">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<body>
+	<h1>The Melodify App</h1>
+	<p>The Melodify App is a web application that provides a comprehensive list of songs categorized by genres. Users can select a genre to view songs related to that part and also search for songs by name. Additionally, users can view detailed information about each song, including similar songs and descriptions.</p>
+	<p>This project was built using React and the Chakra UI, Styled Components and Material-UI libraries for styling.</p>
 
-## Available Scripts
 
-In the project directory, you can run:
+<h2>Features</h2>
+<ul>
+	<li>View all songs</li>
+	<li>Search for songs by name</li>
+	<li>View detailed information about each song</li>
+    <li>View Songs based on genre</li>
+	<li>View all artists</li>
+    <li>View all songs belonging to one artist</li>
 
-### `npm start`
+</ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2>Dependencies</h2>
+<p>The following dependencies are required to run the Melodify App:</p>
+<ul>
+	<li>React</li>
+	<li>React Router</li>
+	<li>Chakra UI</li>
+	<li>Styled Components</li>
+	<li>Material-UI</li>
+</ul>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<h2>Getting Started</h2>
+<p>To get started with the Melodify App, follow these steps:</p>
+<ol>
+	<li>Clone this repository to your local machine</li>
+	<li>Install the required dependencies by running npm install</li>
+	<li>Start the development server by running npm start</li>
+</ol>
 
-### `npm test`
+<h2>Data Fetching</h2>
+<p>The Imelodify App fetches song and artists data from an Sinatra API using fetch. The data is then stored in state using the useState hook. The API endpoint and headers are defined in the FetchData.js file.</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h2>Components</h2>
+<p>The Melodify App is made up of the following components:</p>
 
-### `npm run build`
+### Artist.js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This file defines the `Artist` component. It displays information about an artist and renders an artist card. It also includes a link to the artist's detail page.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ArtistCard.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This file defines the `ArtistCard` component. It fetches artists data from an API and displays a horizontal scrollable list of artist cards.
 
-### `npm run eject`
+### ArtistDetail.js
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This file defines the `ArtistDetail` component. It fetches artist data and songs data for a specific artist based on the provided ID. It displays the artist's name, image, and a list of songs associated with the artist.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ArtistSong.js
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This file defines the `ArtistSong` component. It fetches artist data and songs data for a specific artist based on the provided ID. It displays the artist's name, bio, and a list of songs associated with the artist.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Button.js
 
-## Learn More
+This file defines the `Button` component. It renders a styled button with a link.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Detail.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This file defines the `Detail` component. It displays details about a song, including an image, title, and description.
 
-### Code Splitting
+### ArtistDetail.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This file defines the `ArtistDetail` component. It fetches artist detail data based on the provided ID and displays the artist's detail information, including the artist's name and a list of songs associated with the artist.
 
-### Analyzing the Bundle Size
+### HomeHorizontalScrollbar.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This file defines the `HomeHorizontalScrollbar` component. It displays a horizontal scrollbar with different song genres. It allows the user to scroll through the genres and select a genre.
 
-### Making a Progressive Web App
+### NewSong.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This file defines the `NewSong` component. It allows the user to add a new song by filling out a form with title, genre, description, release date, image path, and artist ID.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<h2>Styling</h2>
+<p>The Melodify App uses Chakra UI, Styled Components and Material-UI for styling.</p>
+<h2>Author</h2>
+This Melodify App application was created by: 
+<ol>
+Kiprotich Ngetich Leonard
 
-### Deployment
+</ol> You can contact us at cvlgeneral2020@gmail.com.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<h2>Contributing</h2>
+    <p>If you would like to contribute to the project, please follow these steps:</p>
+    <ol>
+    <li>Fork the repository.</li>
+    <li>Create a new branch for your changes using <code>git checkout -b your-branch-name</code>.</li>
+    <li>Make your changes to the code.</li>
+    <li>Test your changes.</li>
+    <li>Commit your changes with a descriptive commit message using <code>git commit -m "your commit message"</code>.</li>
+    <li>Push your changes to your forked repository using <code>git push origin your-branch-name</code>.</li>
+    <li>Submit a pull request to the original repository.</li>
+    </ol>
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<h2>License</h2>
+<p>This project is licensed under the <a href="license.md">MIT License</a></p>
